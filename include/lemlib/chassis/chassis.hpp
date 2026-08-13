@@ -943,6 +943,7 @@ class Chassis {
          * 
          */
         void distanceReset(char xDirection, char yDirection);
+        void distanceResetNoTrig(char xDirection, char yDirection);
 
         DistanceSensors distSensors;
 
