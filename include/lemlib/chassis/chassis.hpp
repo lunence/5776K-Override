@@ -12,7 +12,7 @@
 
 namespace lemlib {
 
-//field width measurements
+//TODO: field width measurements
 static const float width = 141;
 static const float halfWidth = width / 2;
 
@@ -35,13 +35,15 @@ struct DistResetSensors {
 
 class DistanceSensors {
     public:
-        DistanceSensors(pros::Distance frontLeft, float frontLeftOffsetX, float frontLeftOffsetY,
-                        pros::Distance frontRight, float frontRightOffsetX, float frontRightOffsetY,
+        DistanceSensors(// pros::Distance frontLeft, float frontLeftOffsetX, float frontLeftOffsetY,
+                        // pros::Distance frontRight, float frontRightOffsetX, float frontRightOffsetY,
+                        pros::Distance front, float frontOffsetX, float frontOffsetY,
                         pros::Distance back, float backOffsetX, float backOffsetY,
                         pros::Distance left, float leftOffsetX, float leftOffsetY,
                         pros::Distance right, float rightOffsetX, float rightOffsetY);
-        DistResetSensors frontLeft;
-        DistResetSensors frontRight;
+        // DistResetSensors frontLeft;
+        // DistResetSensors frontRight;
+        DistResetSensors front;
         DistResetSensors back;
         DistResetSensors left;
         DistResetSensors right;
@@ -662,6 +664,10 @@ class Chassis {
          */
         void swingToPoint(float x, float y, DriveSide lockedSide, int timeout, SwingToPointParams params = {},
                           bool async = false);
+        
+        //TODO: turnWithPower
+        void turnWithPower(float theta, float latPower, int timeout, TurnToHeadingParams params, bool async);
+        
         /**
          * @brief Move the chassis towards the target pose
          *
@@ -944,7 +950,10 @@ class Chassis {
          *
          * 
          */
-        void distanceReset(char xDirection, char yDirection);
+        void distReset(char xDirection, char yDirection);
+        void distResetNoTrig(char xDirection, char yDirection);
+        void distResetX(char xDirection);
+        void distResetY(char yDirection);
 
         DistanceSensors distSensors;
 
